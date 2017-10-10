@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ResponsiveFormsDesign"
+             x:Class="ResponsiveFormsDesign.MainPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="labelRedStyle" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="FontSize" Value="Large" />
+                <Setter Property="TextColor" Value="Red" />
+            </Style>
+            <Style x:Key="labelGreenStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="Green" />
+            </Style>
+            <Style x:Key="labelBlueStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="Blue" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid>
+        <Grid.Behaviors>
+            <local:Adaptive>
+                <!--<local:Adaptive.States>
+                    <local:AdaptiveState MinWindowWidth="0">
+                        <local:AdaptiveSetter Target="myEntry" Property="IsEnabled" Value="True" />
+                        <local:AdaptiveSetter Target="myEntry" Property="BackgroundColor" Value="Blue" />
+                        <local:AdaptiveSetter Target="stack" Property="Orientation" Value="Vertical" />
+                        <local:AdaptiveSetter Property="Padding" Value="12" />
+                        <local:AdaptiveSetter Target="grid" Property="RowDefinitions[2]" Value="*" />
+                        <local:AdaptiveSetter Target="grid" Property="ColumnDefinitions[2]" Value="0" />
+                    </local:AdaptiveState>
+                    <local:AdaptiveState MinWindowWidth="550">
+                        <local:AdaptiveSetter Target="myEntry" Property="IsEnabled" Value="False" />
+                        <local:AdaptiveSetter Target="myEntry" Property="BackgroundColor" Value="Red" />
+                        <local:AdaptiveSetter Target="stack" Property="Orientation" Value="Horizontal" />
+                        <local:AdaptiveSetter Property="Padding" Value="24" />
+                        <local:AdaptiveSetter Target="grid" Property="RowDefinitions[2]" Value="0" />
+                        <local:AdaptiveSetter Target="grid" Property="ColumnDefinitions[2]" Value="*" />
+                    </local:AdaptiveState>
+                    <local:AdaptiveState MinWindowWidth="950">
+                        <local:AdaptiveSetter Target="myEntry" Property="BackgroundColor" Value="Green" />
+                    </local:AdaptiveState>
+                </local:Adaptive.States>-->
+                <local:Adaptive.States>
+                    <local:AdaptiveState MinWindowWidth="0">
+                        <local:AdaptiveSetter Target="myEntry" Property="IsEnabled" Value="True" />
+                        <local:AdaptiveSetter Target="myEntry" Property="BackgroundColor" Value="Blue" />
+                        <local:AdaptiveSetter Target="stack" Property="Orientation" Value="Vertical" />
+                        <local:AdaptiveSetter Property="Padding" Value="12" />
+                        <local:AdaptiveSetter Target="lastRow" Property="Height" Value="*" />
+                        <local:AdaptiveSetter Target="lastColumn" Property="Width" Value="0" />
+                        <!--<local:AdaptiveSetter Target="pointLabel" Property="(Grid.Row)" Value="1" />-->
+                    </local:AdaptiveState>
+                    <local:AdaptiveState MinWindowWidth="550">
+                        <local:AdaptiveSetter Target="myEntry" Property="IsEnabled" Value="False" />
+                        <local:AdaptiveSetter Target="myEntry" Property="BackgroundColor" Value="Red" />
+                        <local:AdaptiveSetter Target="stack" Property="Orientation" Value="Horizontal" />
+                        <local:AdaptiveSetter Property="Padding" Value="24" />
+                        <local:AdaptiveSetter Target="lastRow" Property="Height" Value="0" />
+                        <local:AdaptiveSetter Target="lastColumn" Property="Width" Value="*" />
+                        <!--<local:AdaptiveSetter Target="pointLabel" Property="(Grid.Row)" Value="0" />-->
+                    </local:AdaptiveState>
+                    <local:AdaptiveState MinWindowWidth="950">
+                        <local:AdaptiveSetter Target="myEntry" Property="BackgroundColor" Value="Green" />
+                    </local:AdaptiveState>
+                </local:Adaptive.States>
+            </local:Adaptive>
+        </Grid.Behaviors>
+
+        <StackLayout>
+
+            <StackLayout x:Name="stack">
+                <Label Text="1" />
+                <Label Text="2" />
+                <Label Text="3" />
+            </StackLayout>
+
+            <Grid x:Name="grid">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition x:Name="lastRow" Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition x:Name="lastColumn" Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Label x:Name="pointLabel" Grid.Row="0" Grid.Column="1" Text="^" BackgroundColor="LightBlue" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                <Label Grid.Row="1" Grid.Column="0" Text="/" BackgroundColor="LightBlue" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                <Label Grid.Row="1" Grid.Column="1" Text="|" BackgroundColor="LightBlue" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                <Label Grid.Row="1" Grid.Column="2" Text="\" BackgroundColor="LightBlue" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+            </Grid>
+
+            <Entry x:Name="myEntry" Text="hello world!" />
+
+            <Button x:Name="btn" Text="Button_Clicked" />
+
+        </StackLayout>
+
+    </Grid>
+
+</ContentPage>
